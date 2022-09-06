@@ -12,7 +12,11 @@ const ButtonGroup = () => {
         Create Record
       </Link>
 
-      <Link to="/logout" className="bg-gray-400 text-black rounded-md px-5 py-3 mx-2">
+      <Link
+        to="/"
+        onClick={() => localStorage.setItem("isAuthenticated", "false")}
+        className="bg-gray-400 text-black rounded-md px-5 py-3 mx-2"
+      >
         Logout
       </Link>
     </div>

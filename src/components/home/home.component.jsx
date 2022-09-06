@@ -1,15 +1,13 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { POSTS_URL } from "../../constants/constants";
 import { saveApiData } from "../../redux/jsonApi/jsonApi.actions";
 import ButtonGroup from "../buttonGroup/buttonGroup.component";
 import Table from "../table/table.component";
 
 const Home = (props) => {
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   (() => {
     if (props.jsonData.length > 0) {
       return;
@@ -23,12 +21,9 @@ const Home = (props) => {
           console.log(error);
         });
     }
-    // if (props.jsonData) {
-
-    // }
   })();
 
-  return (
+  return localStorage.getItem("isAuthenticated") === "true" ? (
     <>
       {props.jsonData.length > 0 ? (
         <>
@@ -45,7 +40,7 @@ const Home = (props) => {
             </thead>
             <tbody>
               {props.jsonData.map((item) => (
-                <tr key={item.id}>
+                <tr key={item.id} className="py-10">
                   <Table item={item} />
                 </tr>
               ))}
@@ -56,6 +51,8 @@ const Home = (props) => {
         <h1>Loading...</h1>
       )}
     </>
+  ) : (
+    <Navigate to="/" />
   );
 };
 

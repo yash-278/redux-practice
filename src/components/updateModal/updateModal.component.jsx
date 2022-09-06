@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import { updateResource } from "../../redux/jsonApi/jsonApi.actions";
 
 const UpdateModal = (props) => {
@@ -18,7 +18,7 @@ const UpdateModal = (props) => {
     navigate("home");
   };
 
-  return (
+  return localStorage.getItem("isAuthenticated") === "true" ? (
     <div className="absolute w-full bg-slate-900 max-h-full">
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
@@ -73,6 +73,8 @@ const UpdateModal = (props) => {
         </div>
       </div>
     </div>
+  ) : (
+    <Navigate to="/" />
   );
 };
 

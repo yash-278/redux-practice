@@ -48,7 +48,6 @@ const Signup = () => {
           <form
             className="mt-8 space-y-6"
             onSubmit={(event) => {
-              // console.log(event.target[1].value);
               handleLogin(event);
             }}
           >
