@@ -24,7 +24,7 @@ const Signup = () => {
       password: event.target[1].value,
     };
     const userData = JSON.parse(localStorage.getItem("userData"));
-    if (userData.username === data.username && userData.password === data.password) {
+    if (userData && userData.username === data.username && userData.password === data.password) {
       localStorage.setItem("isAuthenticated", true);
       navigate("home");
     } else {
